@@ -44,3 +44,11 @@ SELECT ...
 FROM Booking
 LEFT JOIN User ...
 WHERE ...
+
+## 1. Non-Correlated Subquery
+
+**Goal:** Retrieve all properties where the **average review rating is greater than 4.0**.
+
+
+## 2. Correlated Subquery
+**Goal:** Retrieve all users who have made more than 3 bookings.

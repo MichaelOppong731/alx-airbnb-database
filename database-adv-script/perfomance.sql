@@ -1,4 +1,5 @@
--- Initial complex query
+-- Initial complex query to retrieve bookings with user, property, and payment details
+-- Includes WHERE and AND clauses for realistic filtering
 EXPLAIN ANALYZE
 SELECT 
     b.booking_id,
@@ -25,10 +26,12 @@ SELECT
 FROM Booking b
 JOIN User u ON b.user_id = u.user_id
 JOIN Property p ON b.property_id = p.property_id
-LEFT JOIN Payment pay ON b.booking_id = pay.booking_id;
+LEFT JOIN Payment pay ON b.booking_id = pay.booking_id
+WHERE b.status = 'confirmed'
+  AND b.start_date >= CURRENT_DATE;
 
 
--- Refactored optimized query
+-- Refactored optimized query: Reduced columns, preserved filters
 EXPLAIN ANALYZE
 SELECT 
     b.booking_id,
@@ -49,4 +52,6 @@ SELECT
 FROM Booking b
 INNER JOIN User u ON b.user_id = u.user_id
 INNER JOIN Property p ON b.property_id = p.property_id
-LEFT JOIN Payment pay ON b.booking_id = pay.booking_id;
+LEFT JOIN Payment pay ON b.booking_id = pay.booking_id
+WHERE b.status = 'confirmed'
+  AND b.start_date >= CURRENT_DATE;

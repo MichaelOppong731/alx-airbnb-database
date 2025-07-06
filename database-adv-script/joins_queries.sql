@@ -23,6 +23,7 @@ SELECT
     Review.comment
 FROM Property
 LEFT JOIN Review ON Property.property_id = Review.property_id;
+ORDER BY Property.name;
 
 
 -- FULL OUTER JOIN: All users and all bookings

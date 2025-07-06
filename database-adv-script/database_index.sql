@@ -12,3 +12,14 @@ CREATE INDEX idx_property_location ON Property(location);
 
 -- Index on Property.name to optimize ordering or search by name
 CREATE INDEX idx_property_name ON Property(name);
+
+
+EXPLAIN ANALYZE
+SELECT 
+    u.user_id,
+    u.first_name,
+    u.last_name,
+    COUNT(b.booking_id) AS total_bookings
+FROM User u
+JOIN Booking b ON u.user_id = b.user_id
+GROUP BY u.user_id, u.first_name, u.last_name;
